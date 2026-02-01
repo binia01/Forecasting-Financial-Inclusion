@@ -115,9 +115,54 @@ The unified schema uses `record_type` to categorize data:
 - 📄 `data/data_enrichment_log.md` — Detailed documentation of all additions
 - 📊 `data/processed/ethiopia_fi_unified_data_enriched.csv` — Enriched dataset
 
+## � Task 2: Exploratory Data Analysis
+
+### Objective
+Analyze patterns and factors influencing financial inclusion in Ethiopia.
+
+### Key Insights
+
+#### 1. The Account Ownership Paradox
+Despite **65M+ mobile money registrations** (Telebirr 54.8M + M-Pesa 10.8M), account ownership only grew **+3pp** (46% → 49%) from 2021-2024.
+- Mobile money-only users are rare (~0.5% of adults)
+- Most MM users already have bank accounts (complementary, not substitute)
+- Activity rate is only 66% (many dormant registrations)
+
+#### 2. The Digital Crossover Milestone
+**P2P transactions surpassed ATM withdrawals** in FY2024/25 — a historic first for Ethiopia:
+- P2P: 128.3M transactions (+158% YoY)
+- ATM: 119.3M transactions (+26% YoY)
+- Crossover ratio: 1.08
+
+#### 3. Persistent Gender Gap
+- Account ownership gap: **18-20pp** (56% male vs 36% female)
+- Women hold only **14%** of mobile money accounts
+- Phone ownership gap: **24%** (86% male vs 65% female)
+
+#### 4. Infrastructure as Leading Indicator
+- 4G coverage doubled: 37.5% → **70.8%**
+- Bottlenecks: Smartphone (24%), Mobile internet (26.9%)
+- Traditional banking very sparse: 0.49 branches, 0.65 ATMs per 100k
+
+#### 5. NFIS-II Target Gap
+- Current: 49% | Target: 70% by 2025 | **Gap: 21pp**
+- At current trajectory (+1pp/year), would reach 70% by 2046
+
+### Data Quality Assessment
+| Metric | Value |
+|--------|-------|
+| High confidence data | ~75% |
+| Medium confidence data | ~25% |
+| Temporal coverage | 2011-2025 |
+| Core indicators sparse | Findex every 3 years |
+
+### Outputs
+- 📓 `notebooks/02_exploratory_data_analysis.ipynb` — Full EDA with visualizations
+- 📄 `reports/eda_summary_report.md` — Key findings summary
+- 📊 `reports/figures/` — All visualizations
+
 ## 🔜 Upcoming Tasks
 
-- **Task 2**: Analyze patterns and relationships in Ethiopia's inclusion data
 - **Task 3**: Build forecasting models for ACCESS and USAGE (2025-2027)
 - **Task 4**: Create interactive dashboard presenting findings
 
