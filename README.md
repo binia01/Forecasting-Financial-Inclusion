@@ -59,7 +59,8 @@ Forecasting-Financial-Inclusion/
 ├── data/
 │   ├── raw/                           # Original starter dataset
 │   ├── processed/                     # Enriched analysis-ready data
-│   │   └── event_indicator_matrix_refined.csv  # Calibrated impact estimates
+│   │   ├── event_indicator_matrix_refined.csv  # Calibrated impact estimates
+│   │   └── forecast_2025_2027.csv     # Forecast table with CIs
 │   ├── ethiopia_fi_unified_data*.csv  # Main unified dataset
 │   ├── reference_codes*.csv           # Valid codes reference
 │   ├── Additional Data Points Guide*  # Enrichment guidance
@@ -67,7 +68,8 @@ Forecasting-Financial-Inclusion/
 ├── notebooks/
 │   ├── 01_data_exploration_enrichment.ipynb  # Task 1 notebook
 │   ├── 02_exploratory_data_analysis.ipynb    # Task 2 notebook
-│   └── 03_event_impact_modeling.ipynb        # Task 3 notebook
+│   ├── 03_event_impact_modeling.ipynb        # Task 3 notebook
+│   └── 04_forecasting_access_usage.ipynb     # Task 4 notebook
 ├── src/
 │   └── __init__.py
 ├── dashboard/
@@ -77,7 +79,8 @@ Forecasting-Financial-Inclusion/
 │   ├── figures/                       # All visualizations
 │   ├── interim_report.md              # Interim submission
 │   ├── eda_summary_report.md          # EDA findings
-│   └── event_impact_methodology.md    # Impact modeling methodology
+│   ├── event_impact_methodology.md    # Impact modeling methodology
+│   └── forecast_executive_summary.md  # Forecast executive summary
 ├── tests/
 │   └── __init__.py
 ├── requirements.txt
@@ -223,9 +226,66 @@ Applied adjustment factors based on validation:
 - 📊 `data/processed/event_indicator_matrix_refined.csv` — Calibrated impact estimates
 - 📈 `reports/figures/` — Impact visualizations (4 new figures)
 
+## � Task 4: Forecasting Access and Usage
+
+### Objective
+Forecast Account Ownership (ACCESS) and Digital Payment Usage for 2025-2027.
+
+### Methodology
+Given sparse data (5 Findex data points over 13 years), we use:
+1. **Trend Regression** - Linear model on historical Findex data (R² = 0.97)
+2. **Event-Augmented Model** - Trend + expected event effects from Task 3
+3. **Scenario Analysis** - Pessimistic, Base, and Optimistic scenarios
+
+### Key Forecast Results
+
+#### Account Ownership (ACCESS)
+| Year | Trend Only | Base Scenario | Range (Pess - Opt) | 95% CI |
+|------|------------|---------------|-------------------|--------|
+| 2025 | 54.8% | 61.8% | 57.8% - 64.4% | [42.9%, 80.8%] |
+| 2026 | 57.7% | 73.7% | 64.7% - 79.5% | [53.9%, 93.4%] |
+| 2027 | 60.5% | 82.5% | 70.0% - 90.6% | [61.9%, 103.1%] |
+
+#### Digital Payment Usage
+| Year | Trend Only | Base Scenario | Range (Pess - Opt) | 95% CI |
+|------|------------|---------------|-------------------|--------|
+| 2025 | 48.6% | 59.6% | 53.3% - 63.6% | [35.8%, 83.4%] |
+| 2026 | 52.9% | 82.9% | 66.4% - 93.4% | [59.1%, 106.8%] |
+| 2027 | 57.3% | 105.3% | 79.1% - 122.0% | [81.5%, 129.1%] |
+
+### Events with Largest Impact
+| Event | ACCESS Impact | USAGE Impact | Confidence |
+|-------|--------------|--------------|------------|
+| Interoperability Full Launch (2026) | +4pp | +16pp | Low |
+| EthioPay Instant Payment (2025) | +3pp | +15pp | Low |
+| Telebirr continued growth | +6pp | +9pp | Medium |
+| Fayda Digital ID rollout | +6pp | +2pp | Low |
+| M-Pesa market penetration | +3pp | +6pp | Medium |
+
+### NFIS-II Target Assessment
+- **Target**: 70% account ownership by 2025
+- **Current (2024)**: 49%
+- **2025 Forecast (Base)**: 61.8%
+- **Gap**: ~8pp
+- **Conclusion**: ⚠️ Target is very unlikely to be met by 2025
+
+### Key Uncertainties
+1. **Data sparsity**: Only 5 Findex data points; CI width of ±21pp
+2. **Event execution**: Interoperability & EthioPay timing uncertain
+3. **Macro headwinds**: FX volatility, inflation may slow adoption
+4. **Survey vs. Admin gap**: Mobile money registrations ≠ Findex ownership (4x gap)
+5. **Gender gap**: Women's adoption trajectory could drag overall rates
+
+### Outputs
+- 📓 `notebooks/04_forecasting_access_usage.ipynb` — Forecasting notebook
+- 📊 `data/processed/forecast_2025_2027.csv` — Forecast table with CIs
+- 📄 `reports/forecast_executive_summary.md` — Executive summary
+- 📈 `reports/figures/forecast_scenarios.png` — Scenario visualization
+- 📈 `reports/figures/forecast_decomposition.png` — Trend vs event effects
+- 📈 `reports/figures/nfis_target_gap.png` — Gap to NFIS-II target
+
 ## 🔜 Upcoming Tasks
 
-- **Task 4**: Build forecasting models for ACCESS and USAGE (2025-2027)
 - **Task 5**: Create interactive dashboard presenting findings
 
 ## 👥 Team
