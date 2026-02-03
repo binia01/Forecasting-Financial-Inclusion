@@ -284,9 +284,78 @@ Given sparse data (5 Findex data points over 13 years), we use:
 - 📈 `reports/figures/forecast_decomposition.png` — Trend vs event effects
 - 📈 `reports/figures/nfis_target_gap.png` — Gap to NFIS-II target
 
+## � Task 5: Interactive Dashboard
+
+### Objective
+Create an interactive dashboard enabling stakeholders to explore data, understand event impacts, and view forecasts.
+
+### Dashboard Features
+
+The Streamlit dashboard (`dashboard/app.py`) includes four main sections:
+
+#### 📊 Overview Page
+- Key metrics summary cards (Account Ownership, Digital Payment, P2P/ATM Ratio, etc.)
+- Growth highlights with interactive charts
+- Data summary and coverage statistics
+
+#### 📈 Trends Page
+- Interactive time series plots with date range selector
+- Channel comparison (Mobile Money providers)
+- Infrastructure growth visualization (4G, Smartphone penetration)
+- Gender gap analysis
+- Data download functionality
+
+#### 🔮 Forecasts Page
+- Forecast visualizations with 95% confidence intervals
+- Model selection (Event-Augmented vs Linear Trend)
+- Forecast summary table
+- Key milestones and projected achievements
+
+#### 🎯 Inclusion Projections Page
+- Progress toward 70% NFIS-II target (gauge chart)
+- Scenario comparison (Pessimistic, Base, Optimistic)
+- Answers to consortium's key questions
+- Report download functionality
+
+### Running the Dashboard Locally
+
+1. **Ensure dependencies are installed**
+```bash
+pip install -r requirements.txt
+```
+
+2. **Ensure processed data exists**
+The dashboard requires these files in `data/processed/`:
+- `ethiopia_fi_unified_data_enriched.csv`
+- `forecast_2025_2027.csv`
+- `event_indicator_matrix_refined.csv`
+
+If missing, run the notebooks in order (01-04) to generate them.
+
+3. **Start the dashboard**
+```bash
+cd /path/to/Forecasting-Financial-Inclusion
+streamlit run dashboard/app.py
+```
+
+4. **Access the dashboard**
+Open your browser to `http://localhost:8501`
+
+### Dashboard Screenshot Sections
+| Section | Description |
+|---------|-------------|
+| Overview | 8 KPI cards, P2P vs ATM chart, Account Ownership trajectory |
+| Trends | Pillar-filtered time series, Gender gap, Infrastructure growth |
+| Forecasts | Interactive forecasts with CI, Model toggle, Milestone timeline |
+| Projections | Scenario gauge, Comparison chart, Key Q&A |
+
+### Outputs
+- 📱 `dashboard/app.py` — Complete Streamlit application
+- 📄 Requirements updated with `streamlit>=1.31.0` and `plotly>=5.18.0`
+
 ## 🔜 Upcoming Tasks
 
-- **Task 5**: Create interactive dashboard presenting findings
+- **Task 6**: Final presentation and report
 
 ## 👥 Team
 
