@@ -59,19 +59,25 @@ Forecasting-Financial-Inclusion/
 ├── data/
 │   ├── raw/                           # Original starter dataset
 │   ├── processed/                     # Enriched analysis-ready data
+│   │   └── event_indicator_matrix_refined.csv  # Calibrated impact estimates
 │   ├── ethiopia_fi_unified_data*.csv  # Main unified dataset
 │   ├── reference_codes*.csv           # Valid codes reference
 │   ├── Additional Data Points Guide*  # Enrichment guidance
 │   └── data_enrichment_log.md         # Documentation of additions
 ├── notebooks/
-│   └── 01_data_exploration_enrichment.ipynb  # Task 1 notebook
+│   ├── 01_data_exploration_enrichment.ipynb  # Task 1 notebook
+│   ├── 02_exploratory_data_analysis.ipynb    # Task 2 notebook
+│   └── 03_event_impact_modeling.ipynb        # Task 3 notebook
 ├── src/
 │   └── __init__.py
 ├── dashboard/
 │   └── app.py
 ├── models/
 ├── reports/
-│   └── figures/
+│   ├── figures/                       # All visualizations
+│   ├── interim_report.md              # Interim submission
+│   ├── eda_summary_report.md          # EDA findings
+│   └── event_impact_methodology.md    # Impact modeling methodology
 ├── tests/
 │   └── __init__.py
 ├── requirements.txt
@@ -161,10 +167,66 @@ Despite **65M+ mobile money registrations** (Telebirr 54.8M + M-Pesa 10.8M), acc
 - 📄 `reports/eda_summary_report.md` — Key findings summary
 - 📊 `reports/figures/` — All visualizations
 
+## 🎯 Task 3: Event Impact Modeling
+
+### Objective
+Model how events (policies, product launches, infrastructure investments) affect financial inclusion indicators.
+
+### Methodology
+
+#### Functional Forms for Event Effects
+| Form | Use Case | Example |
+|------|----------|---------|
+| **Step** | Permanent regulatory changes | NPS Proclamation |
+| **Ramp** | Infrastructure buildout | 4G rollout |
+| **Impulse-Decay** | Price shocks | FX reform |
+| **S-Curve** | Technology adoption | Telebirr launch |
+
+#### Comparable Country Evidence
+Impact estimates derived from:
+- **Kenya**: M-Pesa (+22% ownership), M-Shwari (first mobile credit)
+- **Tanzania**: Vodacom M-Pesa (+15% ownership)
+- **India**: Jan Dhan Yojana (+20% ownership), UPI (+25% digital payments)
+- **Rwanda**: Agent banking (+12% ownership)
+- **Bangladesh**: bKash (+18% ownership)
+
+### Key Findings
+
+#### Event-Indicator Association Matrix
+Created comprehensive matrix showing estimated impact of **14 events** on **9 core indicators** across ACCESS, USAGE, AFFORDABILITY, and GENDER pillars.
+
+#### Validation Results
+| Indicator | Observed Δ | Predicted Δ | Error |
+|-----------|------------|-------------|-------|
+| Mobile Money Accounts | +4.75pp | +19.25pp | Over-predicted 4x |
+| Account Ownership | +3pp | +10.25pp | Over-predicted 3x |
+| 4G Coverage | +33.3pp | +34.5pp | Accurate (1.2pp error) |
+
+**Key Insight**: Mobile money registrations ≠ survey-measured account ownership. Mobile money complements existing bank accounts rather than substituting for them.
+
+#### Refined Impact Estimates
+Applied adjustment factors based on validation:
+- **ACCESS indicators**: Reduced by 50-70% (complementarity effect)
+- **USAGE indicators**: Kept as-is (transaction data validates estimates)
+- **4G Coverage**: Accurate, no adjustment needed
+
+### Confidence Assessment
+| Level | Count | Description |
+|-------|-------|-------------|
+| High | 4 | Validated, <30% error |
+| Medium | 11 | Comparable evidence |
+| Low | 5 | Theoretical only |
+
+### Outputs
+- 📓 `notebooks/03_event_impact_modeling.ipynb` — Full analysis notebook
+- 📄 `reports/event_impact_methodology.md` — Detailed methodology documentation
+- 📊 `data/processed/event_indicator_matrix_refined.csv` — Calibrated impact estimates
+- 📈 `reports/figures/` — Impact visualizations (4 new figures)
+
 ## 🔜 Upcoming Tasks
 
-- **Task 3**: Build forecasting models for ACCESS and USAGE (2025-2027)
-- **Task 4**: Create interactive dashboard presenting findings
+- **Task 4**: Build forecasting models for ACCESS and USAGE (2025-2027)
+- **Task 5**: Create interactive dashboard presenting findings
 
 ## 👥 Team
 
